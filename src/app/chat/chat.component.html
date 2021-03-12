@@ -1,0 +1,29 @@
+<div class="chat-window-title" (click)="onClickScale()">
+  <strong>
+    {{user?.userName}}
+  </strong>
+  <div class="chat-window-action">
+    <button pButton type="button" [icon]="chat?.isMinimized ? 'pi pi-window-maximize' : 'pi pi-window-minimize'" class="p-button-info p-button-text" (click)="onClickScale()"></button>
+    <button pButton type="button" icon="pi pi-times" class="p-button-info p-button-text" (click)="closeChat()"></button>
+  </div>
+</div>
+<div #chatWindow class="chat-window-content">
+  <div *ngFor="let message of messages">
+    <div class="chat-message">
+      <div class="message-sender">
+        {{message.user.userName}}
+      </div>
+      <div class="message-content">
+        {{message.content}}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="chat-message-input">
+  <input
+    type="text"
+    [placeholder]="chatPlaceholder"
+    [(ngModel)]="message"
+    (keyup)="onMessageInputTyped($event)"
+  />
+</div>

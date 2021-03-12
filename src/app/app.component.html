@@ -1,0 +1,17 @@
+<div class="container">
+  <p-sidebar [(visible)]="displaySidebar" [modal]=false position="right">
+    <h1>User list</h1>
+    <div class="user-list">
+      <div class="user-item" *ngFor="let user of users" (click)="onClickUser(user)">
+        {{user.userName}}
+      </div>
+    </div>
+  </p-sidebar>
+  <button pButton type="button" icon="pi pi-plus" class="float-button" [ngStyle]="{'right': (displaySidebar ? 350 : 30) + 'px'}" (click)="displaySidebar = true"></button>
+  <div *ngFor="let chat of openedChats; let i = index">
+    <div [ngClass]="{'chat-window': true, 'chat-window-minimized': chat.isMinimized}" [ngStyle]="{'right': (displaySidebar ? 330 : 0) + 30 + (chatWindowWidth + 30) * i + 'px'}">
+      <app-chat [user]="chat.user">
+      </app-chat>
+    </div>
+  </div>
+</div>
